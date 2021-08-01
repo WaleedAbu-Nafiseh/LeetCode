@@ -17,29 +17,27 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        int[] nums = {3, 2, 4};
-        int[] answer = new int[2];
+        int[] nums = {0, 2, 1, 5, 3, 4};
+        System.err.println("Values are");
 
-        answer = twoSum(nums, 6);
-        for (int i = 0; i < answer.length; i++) {
-            System.out.println(answer[i]);
+        for (int i = 0; i < nums.length; i++) {
+            System.err.println(nums[i]);
         }
+
+        int[] answer = buildArray(nums);
+        System.err.println("Answer is ");
+
+        for (int i = 0; i < answer.length; i++) {
+            System.err.println(answer[i]);
+        }
+
     }
 
-    public static int[] twoSum(int[] nums, int target) {
-        HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
-        int[] answer = new int[2];
-        for (int i = 0; i < nums.length; i++) {
-            map.put(nums[i], i);
-        }
-        for (int i = 0; i < nums.length; i++) {
-            int leftOver = target - nums[i];
-            if (map.containsKey(leftOver) && map.get(leftOver) != i) {
-                answer[0] = map.get(leftOver);
-                answer[1] = i;
-                break;
-            }
+    public static int[] buildArray(int[] nums) {
+        int[] answer = new int[nums.length];
 
+        for (int i = 0; i < nums.length; i++) {
+            answer[i] = nums[nums[i]];
         }
         return answer;
     }
