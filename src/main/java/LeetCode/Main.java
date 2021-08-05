@@ -18,19 +18,6 @@ public class Main {
      */
     public static void main(String[] args) {
         int[] nums = {0, 2, 1, 5, 3, 4};
-        System.err.println("Values are");
-
-        for (int i = 0; i < nums.length; i++) {
-            System.err.println(nums[i]);
-        }
-
-        int[] answer = buildArray(nums);
-        System.err.println("Answer is ");
-
-        for (int i = 0; i < answer.length; i++) {
-            System.err.println(answer[i]);
-        }
-
     }
 
     public static int[] buildArray(int[] nums) {
@@ -41,4 +28,6 @@ public class Main {
         }
         return answer;
     }
+    
+    
 }
