@@ -6,6 +6,8 @@
 package LeetCode;
 
 import LeetCode.DS.ListNode;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Stack;
 
 /**
@@ -20,29 +22,7 @@ public class Main {
     public static void main(String[] args) {
         isPalindrome(1);
         isValid("(()");
-        ListNode l1 = new ListNode(9);
-        ListNode l12 = new ListNode(9);
-        ListNode l13 = new ListNode(9);
-        ListNode l14 = new ListNode(9);
-        ListNode l15 = new ListNode(9);
-        l1.next = l12;
-        l12.next = l13;
-        l13.next = l14;
-        l14.next = l15;
-        l15.next = null;
-        ListNode l = new ListNode(9);
-        ListNode ll = new ListNode(9);
-        l.next = ll;
-        ll.next = null;
-        ListNode newNode = addTwoNumbers(l1, l);
-        while (newNode != null) {
-            System.err.println(newNode.val);
-            if (newNode.next == null) {
-                newNode = null;
-            } else {
-                newNode = newNode.next;
-            }
-        }
+        System.err.println("dvdf = " + lengthOfLongestSubstring("dvdf"));
     }
 
     public static boolean isPalindrome(int x) {
@@ -133,4 +113,27 @@ public class Main {
         return original.next;
     }
 
+    public static int lengthOfLongestSubstring(String s) {
+        if (s.equals("")) {
+            return 0;
+        }
+        Map<Character, Integer> map = new HashMap<>();
+        int counter = 0, max = 0, seenIndex = 0;
+        for (int i = 0; i <= s.length() - 1; i++) {
+            if (map.containsKey(s.charAt(i))) {
+                counter = 0;
+                i = map.get(s.charAt(i)) + 1;
+                map.clear();
+
+            }
+            counter++;
+            map.put(s.charAt(i), (i));
+
+            if (counter > max) {
+                max = counter;
+            }
+
+        }
+        return max;
+    }
 }
