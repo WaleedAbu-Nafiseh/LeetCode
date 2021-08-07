@@ -5,6 +5,7 @@
  */
 package LeetCode;
 
+import LeetCode.DS.ListNode;
 import java.util.Stack;
 
 /**
@@ -17,8 +18,31 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        boolean answer = isPalindrome(1);
-        System.err.println(isValid("(()"));
+        isPalindrome(1);
+        isValid("(()");
+        ListNode l1 = new ListNode(9);
+        ListNode l12 = new ListNode(9);
+        ListNode l13 = new ListNode(9);
+        ListNode l14 = new ListNode(9);
+        ListNode l15 = new ListNode(9);
+        l1.next = l12;
+        l12.next = l13;
+        l13.next = l14;
+        l14.next = l15;
+        l15.next = null;
+        ListNode l = new ListNode(9);
+        ListNode ll = new ListNode(9);
+        l.next = ll;
+        ll.next = null;
+        ListNode newNode = addTwoNumbers(l1, l);
+        while (newNode != null) {
+            System.err.println(newNode.val);
+            if (newNode.next == null) {
+                newNode = null;
+            } else {
+                newNode = newNode.next;
+            }
+        }
     }
 
     public static boolean isPalindrome(int x) {
@@ -73,6 +97,40 @@ public class Main {
         }
         return stack.isEmpty();
     }
-    
-    
+
+    public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        /* Input: l1 = [2,4,3], l2 = [5,6,4]
+        Output: [7,0,8]
+        Explanation: 342 + 465 = 807.*/
+        ListNode answer = new ListNode();
+        ListNode original = new ListNode();
+        original = answer;
+        int sum = 0, carry = 0, val = 0, i = 0;
+        while (l1 != null || l2 != null) {
+            int firstNumber = (l1 != null) ? l1.val : 0;
+            int secondNumber = (l2 != null) ? l2.val : 0;
+            sum = firstNumber + secondNumber + carry;
+
+            if (sum >= 10) {
+                carry = sum / 10;
+                sum = sum % 10;
+            } else {
+                carry = 0;
+            }
+            answer.next = new ListNode(sum);
+            answer = answer.next;
+            if (l1 != null) {
+                l1 = l1.next;
+            }
+            if (l2 != null) {
+                l2 = l2.next;
+            }
+            if (carry > 0) {
+                answer.next = new ListNode(carry);
+            }
+
+        }
+        return original.next;
+    }
+
 }
